@@ -68,3 +68,24 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# Laney's backend
+
+This is some Of what Laney Staggs worked on
+
+# Node.js Project Setup Guide
+
+This guide provides steps to set up a Node.js project with necessary dependencies, such as `cors` and `dotenv`, and instructions for creating tables in PostgreSQL using pgAdmin.
+
+## Tools Required
+
+- Node.js and npm (Node Package Manager)
+- PostgreSQL
+- pgAdmin (optional, for managing PostgreSQL databases)
+
+## Dependencies
+
+The following npm packages will be used in this project:
+
+- **cors**: Middleware for enabling Cross-Origin Resource Sharing in Express.js.
+- **dotenv**: Module for loading environment variables from a `.env` file.
