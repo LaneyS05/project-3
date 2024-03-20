@@ -22,6 +22,7 @@ const App = () => {
   }, []);
 
   return (
+    //for darkmode 
     <div className={currentMode === 'Dark' ? 'dark' : ''}>
       <BrowserRouter>
         <div className="flex relative dark:bg-main-dark-bg">

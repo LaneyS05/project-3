@@ -56,12 +56,12 @@ const Navbar = () => {
         <div className='flex justify-between p-2 md:mx-6 relative'>
             {/* Menu Button with callback function and toggle menu function */}
             <NavButton title='Menu' customFunc={() =>
-                setActiveMenu((prevActiveMenu) => !prevActiveMenu)} color="blue" icon={<AiOutlineMenu />} />
+                setActiveMenu((prevActiveMenu) => !prevActiveMenu)} color={currentColor} icon={<AiOutlineMenu />} />
             <div className='flex'>
                 <NavButton
                     title='Cart'
                     customFunc={() => handleClick('cart')}
-                    color="blue"
+                    color={currentColor}
                     icon={<FiShoppingCart />} />
                 <NavButton
                     title='Chat'

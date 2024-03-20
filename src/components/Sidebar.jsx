@@ -53,6 +53,10 @@ const Sidebar = () => {
                                     to={`/${Link.name}`}
                                     key={Link.name}
                                     onClick={handleClosedSideBar}
+                                    //to highlight picked sidebar component with the currentcolor
+                                    style={({ isActive }) => ({
+                                        backgroundColor: isActive ? currentColor : '',
+                                    })}
                                     className={({ isActive }) => isActive ? activeLink : normalLink}>
                                     {Link.icon}
                                     <span className='capitalize'>{Link.name}</span>
