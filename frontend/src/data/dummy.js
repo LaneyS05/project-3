@@ -508,14 +508,8 @@ export const links = [
         name: 'kanban',
         icon: <BsKanban />,
       },
-      {
-        name: 'editor',
-        icon: <FiEdit />,
-      },
-      {
-        name: 'color-picker',
-        icon: <BiColorFill />,
-      },
+
+
     ],
   },
   {
@@ -530,10 +524,7 @@ export const links = [
         icon: <AiOutlineAreaChart />,
       },
 
-      {
-        name: 'bar',
-        icon: <AiOutlineBarChart />,
-      },
+
       {
         name: 'pie',
         icon: <FiPieChart />,
@@ -542,18 +533,9 @@ export const links = [
         name: 'financial',
         icon: <RiStockLine />,
       },
-      {
-        name: 'color-mapping',
-        icon: <BsBarChart />,
-      },
-      {
-        name: 'pyramid',
-        icon: <GiLouvrePyramid />,
-      },
-      {
-        name: 'stacked',
-        icon: <AiOutlineBarChart />,
-      },
+
+      
+
     ],
   },
 ];
