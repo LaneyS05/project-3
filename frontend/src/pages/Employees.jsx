@@ -16,7 +16,7 @@ const Employees = () => {
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
-        const response = await fetch("http://localhost:8001/api/employees");
+        const response = await fetch("http://localhost:8001/employees");
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }

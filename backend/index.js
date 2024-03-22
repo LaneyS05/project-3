@@ -11,11 +11,8 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Controllers & Routes
-
-app.use(express.urlencoded({ extended: true }));
-
 // Controllers will go here
+app.use("/employees", require("./controllers/employees"));
 
 // Listen for Connections
 app.listen(process.env.PORT, () => {
