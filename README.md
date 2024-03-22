@@ -90,3 +90,25 @@ The following npm packages will be used in this project:
 cors: Middleware for enabling Cross-Origin Resource Sharing in Express.js.
 dotenv: Module for loading environment variables from a .env file.
 Sequelize for the data base
+
+## Features
+
+Display orders, employees, and customers data in a tabular format using Syncfusion GridComponent.
+Allow sorting, filtering, searching, editing, and deleting data entries.
+Custom image templates for displaying images in the grid.
+
+# Backend (Node.js Express)
+
+## API Endpoints
+
+### Orders API (/orders):
+
+GET /orders: Fetch all orders data.
+
+### Employees API (/employees):
+
+GET /employees: Fetch all employees data.
+
+### Customers API (/customers):
+
+GET /customers: Fetch all customers data.
