@@ -30,6 +30,12 @@ const Employees = () => {
     fetchEmployees();
   }, []);
 
+  const imageTemplate = (field) => {
+    return (
+      <img src={field.Photo} alt="" style={{ width: "20px", height: "20px" }} />
+    );
+  };
+
   return (
     <div className="m-2 md:m-10 p-2 md:p-10 bg-white rounded-3xl">
       <Header category="Page" title="Employees" />
@@ -41,6 +47,13 @@ const Employees = () => {
         width="auto"
       >
         <ColumnsDirective>
+          <ColumnDirective
+            field="Photo"
+            headerText="Photo"
+            width={120}
+            template={imageTemplate}
+          />
+
           <ColumnDirective
             field="EmployeeID"
             headerText="Employee ID"

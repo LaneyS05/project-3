@@ -13,6 +13,8 @@ app.use(bodyParser.json());
 
 // Controllers will go here
 app.use("/employees", require("./controllers/employees"));
+app.use("/customers", require("./controllers/customer"));
+app.use("/orders", require("./controllers/orders"));
 
 // Listen for Connections
 app.listen(process.env.PORT, () => {

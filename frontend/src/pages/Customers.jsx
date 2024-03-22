@@ -13,6 +13,8 @@ import {
 } from "@syncfusion/ej2-react-grids";
 import { Header } from "../components";
 
+// Other imports...
+
 const Customers = () => {
   const [customers, setCustomers] = useState([]);
 
@@ -22,7 +24,7 @@ const Customers = () => {
 
   const fetchCustomers = async () => {
     try {
-      const response = await fetch("/api/customers");
+      const response = await fetch("http://localhost:8001/customers");
       if (!response.ok) {
         throw new Error("Failed to fetch customers");
       }
@@ -33,33 +35,46 @@ const Customers = () => {
     }
   };
 
+  // Custom template for rendering the image
+  const imageTemplate = (field) => {
+    return (
+      <img src={field.Photo} alt="" style={{ width: "20px", height: "20px" }} />
+    );
+  };
+
   return (
     <div className="m-2 md:m-10 p-2 md:p-10 bg-white rounded-3xl">
       <Header category="Page" title="Customers" />
       <GridComponent
         dataSource={customers}
-        // to limit items on orders page
         allowPaging
-        // Allows user to sort orders
         allowSorting
-        // for deleting and editing customers
         toolbar={["Delete"]}
         editSettings={{ allowDeleting: true, allowEditing: true }}
         width="auto"
       >
         <ColumnsDirective>
-          {/* Looping to customers data */}
-          {[
-            { field: "CustomerID", headerText: "Customer ID", width: 120 },
-            { field: "Name", headerText: "Name", width: 150 },
-            { field: "ProjectName", headerText: "Project Name", width: 150 },
-            { field: "Status", headerText: "Status", width: 120 },
-            { field: "Weeks", headerText: "Weeks", width: 120 },
-            { field: "Budget", headerText: "Budget", width: 120 },
-            { field: "Location", headerText: "Location", width: 150 },
-          ].map((item, index) => (
-            <ColumnDirective key={index} {...item} />
-          ))}
+          <ColumnDirective
+            field="Photo"
+            headerText="Photo"
+            width={120}
+            template={imageTemplate}
+          />
+          <ColumnDirective
+            field="CustomerID"
+            headerText="Customer ID"
+            width={120}
+          />
+          <ColumnDirective field="Name" headerText="Name" width={150} />
+          <ColumnDirective
+            field="ProjectName"
+            headerText="Project Name"
+            width={150}
+          />
+          <ColumnDirective field="Status" headerText="Status" width={120} />
+          <ColumnDirective field="Weeks" headerText="Weeks" width={120} />
+          <ColumnDirective field="Budget" headerText="Budget" width={120} />
+          <ColumnDirective field="Location" headerText="Location" width={150} />
         </ColumnsDirective>
         <Inject services={[Page, Toolbar, Selection, Edit, Sort, Filter]} />
       </GridComponent>
