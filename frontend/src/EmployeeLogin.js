@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Navigate } from "react-router-dom"; // Import Navigate correctly
 import "./styles/login.css";
 
-const Login = () => {
+const EmployeeLogin = () => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const handleSubmit = (e) => {
@@ -50,4 +50,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default EmployeeLogin;
