@@ -1,5 +1,5 @@
 "use strict";
-
+//migration
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("Employees", {
@@ -35,16 +35,16 @@ module.exports = {
           isEmail: true,
         },
       },
-      password: {
+      password_hash: {
         type: Sequelize.STRING,
         allowNull: false,
       },
       createdAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE,
       },
       updatedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE,
       },
     });

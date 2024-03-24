@@ -1,4 +1,4 @@
-"use strict";
+// models/employees.js
 const { Model } = require("sequelize");
 const bcrypt = require("bcrypt");
 
@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     async comparePassword(password) {
-      return await bcrypt.compare(password, this.password);
+      return await bcrypt.compare(password, this.password_hash);
     }
   }
 
@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
           isEmail: true,
         },
       },
-      password: {
+      password_hash: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -49,13 +49,17 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "Employee",
       hooks: {
         beforeCreate: async (employee) => {
-          if (employee.password) {
-            employee.password = await Employee.hashPassword(employee.password);
+          if (employee.password_hash) {
+            employee.password_hash = await Employee.hashPassword(
+              employee.password_hash
+            );
           }
         },
         beforeUpdate: async (employee) => {
-          if (employee.password) {
-            employee.password = await Employee.hashPassword(employee.password);
+          if (employee.password_hash) {
+            employee.password_hash = await Employee.hashPassword(
+              employee.password_hash
+            );
           }
         },
       },
