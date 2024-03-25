@@ -21,29 +21,25 @@ const EmployeeLogin = () => {
         },
         body: JSON.stringify({
           email,
-          password, // Make sure password is sent correctly
+          password,
         }),
       });
 
-      console.log("Response status:", response.status); // Check the response status
+      //console.log("Response status:", response.status);
 
       const data = await response.json();
 
       if (response.ok) {
         if (data.success) {
-          // Handle successful login
           console.log("Login successful");
           setLoggedIn(true);
         } else {
-          // Handle invalid credentials
           console.log("Invalid credentials");
         }
       } else {
-        // Handle other HTTP errors
         console.log(`HTTP Error: ${response.status} - ${response.statusText}`);
       }
     } catch (error) {
-      // Handle network errors or exceptions
       console.error("An error occurred:", error.message);
     }
   };

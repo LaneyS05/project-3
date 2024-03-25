@@ -17,10 +17,14 @@ db.sequelize.sync(); // Sync models with database
 // Controllers
 const employeesRouter = require("./controllers/employees");
 const authRouter = require("./controllers/auth");
+const orderRouter = require("./controllers/orders");
+const customerRouter = require("./controllers/customer");
 
 // Routes
 app.use("/employees", employeesRouter);
-app.use("/auth", authRouter); // Use auth router for authentication
+app.use("/auth", authRouter);
+app.use("/orders", orderRouter);
+app.use("/customers", customerRouter);
 
 // Listen for Connections
 app.listen(process.env.PORT, () => {

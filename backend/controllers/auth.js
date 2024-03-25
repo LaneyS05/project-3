@@ -9,9 +9,8 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    console.log("Received login request for email:", email); // Check the email received
+    console.log("Received login request for email:", email);
 
-    // Find the employee by email
     const employee = await Employee.findOne({ where: { email } });
 
     if (!employee) {
@@ -19,9 +18,8 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    console.log("Found employee:", employee.EmployeeID); // Check the found employee
+    console.log("Found employee:", employee.EmployeeID);
 
-    // Compare the entered password with the stored password_hash
     const passwordMatch = await employee.comparePassword(password);
 
     if (!passwordMatch) {
