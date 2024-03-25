@@ -1,4 +1,3 @@
-// Modules and Globals
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -11,10 +10,17 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Controllers will go here
-app.use("/employees", require("./controllers/employees"));
-app.use("/customers", require("./controllers/customer"));
-app.use("/orders", require("./controllers/orders"));
+// Import Sequelize and Models
+const db = require("./models");
+db.sequelize.sync(); // Sync models with database
+
+// Controllers
+const employeesRouter = require("./controllers/employees");
+const authRouter = require("./controllers/auth");
+
+// Routes
+app.use("/employees", employeesRouter);
+app.use("/auth", authRouter); // Use auth router for authentication
 
 // Listen for Connections
 app.listen(process.env.PORT, () => {

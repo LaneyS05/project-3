@@ -1,14 +1,51 @@
-import React, { useState } from "react";
-import { Navigate } from "react-router-dom"; // Import Navigate correctly
+import React, { useState, useRef } from "react";
+import { Navigate } from "react-router-dom";
 import "./styles/login.css";
 
 const EmployeeLogin = () => {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // For demo purposes, set loggedIn to true on form submit
-    setLoggedIn(true);
+
+    try {
+      console.log("Logging in with email:", email); // Check the email being sent
+      const response = await fetch("http://localhost:8001/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password, // Make sure password is sent correctly
+        }),
+      });
+
+      console.log("Response status:", response.status); // Check the response status
+
+      const data = await response.json();
+
+      if (response.ok) {
+        if (data.success) {
+          // Handle successful login
+          console.log("Login successful");
+          setLoggedIn(true);
+        } else {
+          // Handle invalid credentials
+          console.log("Invalid credentials");
+        }
+      } else {
+        // Handle other HTTP errors
+        console.log(`HTTP Error: ${response.status} - ${response.statusText}`);
+      }
+    } catch (error) {
+      // Handle network errors or exceptions
+      console.error("An error occurred:", error.message);
+    }
   };
 
   // Redirect to /ecommerce if loggedIn state is true
@@ -28,6 +65,9 @@ const EmployeeLogin = () => {
           type="text"
           id="username"
           name="username"
+          ref={emailRef}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
 
@@ -39,6 +79,9 @@ const EmployeeLogin = () => {
           type="password"
           id="password"
           name="password"
+          ref={passwordRef}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
 

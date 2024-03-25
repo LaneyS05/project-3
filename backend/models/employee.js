@@ -1,6 +1,5 @@
-// models/employees.js
+// models/employee.js
 const { Model } = require("sequelize");
-const bcrypt = require("bcrypt");
 
 module.exports = (sequelize, DataTypes) => {
   class Employee extends Model {
@@ -8,13 +7,9 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
 
-    static async hashPassword(password) {
-      const saltRounds = 10;
-      return await bcrypt.hash(password, saltRounds);
-    }
-
     async comparePassword(password) {
-      return await bcrypt.compare(password, this.password_hash);
+      // For now, compare passwords directly without hashing
+      return this.password_hash === password;
     }
   }
 
@@ -47,22 +42,6 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Employee",
-      hooks: {
-        beforeCreate: async (employee) => {
-          if (employee.password_hash) {
-            employee.password_hash = await Employee.hashPassword(
-              employee.password_hash
-            );
-          }
-        },
-        beforeUpdate: async (employee) => {
-          if (employee.password_hash) {
-            employee.password_hash = await Employee.hashPassword(
-              employee.password_hash
-            );
-          }
-        },
-      },
     }
   );
 
