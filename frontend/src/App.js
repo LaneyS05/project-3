@@ -79,7 +79,7 @@ const App = () => {
 
             <Routes>
               {/* Route for EmployeeLogin */}
-              <Route path="/login" element={<EmployeeLogin />} />
+              <Route path="/" element={<EmployeeLogin />} />
 
               {/* dashboard  */}
               <Route path="/ecommerce" element={<Ecommerce />} />
