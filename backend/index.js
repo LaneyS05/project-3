@@ -19,7 +19,7 @@ const employeesRouter = require("./controllers/employees");
 const authRouter = require("./controllers/auth");
 const orderRouter = require("./controllers/orders");
 const customerRouter = require("./controllers/customer");
-const signupAuthRouter = require("./controllers/auth");
+const signupAuthRouter = require("./controllers/create");
 
 // Routes
 app.use("/employees", employeesRouter);

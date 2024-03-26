@@ -12,7 +12,7 @@ const EmployeeSignup = () => {
     HireDate: "",
     ReportsTo: "",
     email: "",
-    password_hash: "",
+    password_hash: "", // Change to password_hash
   });
 
   const handleChange = (e) => {
@@ -27,6 +27,7 @@ const EmployeeSignup = () => {
     e.preventDefault();
 
     try {
+      console.log("Submitting Employee Data:", employee);
       const response = await fetch("http://localhost:8001/auth/employees", {
         method: "POST",
         headers: {
@@ -34,6 +35,10 @@ const EmployeeSignup = () => {
         },
         body: JSON.stringify(employee),
       });
+
+      const data = await response.json();
+
+      console.log("Response from Server:", data);
 
       if (response.ok) {
         console.log("Employee created successfully!");
@@ -139,10 +144,10 @@ const EmployeeSignup = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="password_hash">Password:</label>
+          <label htmlFor="password">Password:</label>
           <input
             type="password"
-            id="password_hash"
+            id="password"
             name="password_hash"
             value={employee.password_hash}
             onChange={handleChange}
@@ -155,7 +160,7 @@ const EmployeeSignup = () => {
         </button>
       </form>
       <p>
-        already have an account click{" "}
+        Already have an account? Click{" "}
         <a className="link" href="http://localhost:3000/login">
           HERE
         </a>

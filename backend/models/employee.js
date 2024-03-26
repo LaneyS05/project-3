@@ -1,5 +1,4 @@
 const { Model } = require("sequelize");
-const bcrypt = require("bcrypt");
 
 module.exports = (sequelize, DataTypes) => {
   class Employee extends Model {
@@ -41,10 +40,6 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "Employee",
     }
   );
-
-  Employee.prototype.validPassword = async function (password) {
-    return await bcrypt.compare(password, this.password_hash);
-  };
 
   return Employee;
 };
