@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
 import "./styles/login.css";
 
@@ -6,14 +6,13 @@ const EmployeeLogin = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log("Submitting with:", email, password);
+
     try {
-      console.log("Logging in with email:", email);
       const response = await fetch("http://localhost:8001/auth/login", {
         method: "POST",
         headers: {
@@ -25,9 +24,9 @@ const EmployeeLogin = () => {
         }),
       });
 
-      console.log("Response status:", response.status);
-
       const data = await response.json();
+
+      console.log("Response data:", data);
 
       if (response.ok) {
         if (data.success) {
@@ -52,29 +51,23 @@ const EmployeeLogin = () => {
     <div className="login-container">
       <h2>Login</h2>
       <form className="login-form" onSubmit={handleSubmit}>
-        <label className="login-form-label" htmlFor="username">
+        <label className="login-form-label" htmlFor="email">
           Email:
         </label>
         <input
           className="login-form-input"
-          type="text"
-          id="username"
-          name="username"
-          ref={emailRef}
+          type="email"
+          id="email"
+          name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-
-        <label className="login-form-label" htmlFor="password">
-          Password:
-        </label>
         <input
           className="login-form-input"
           type="password"
           id="password"
           name="password"
-          ref={passwordRef}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
@@ -85,7 +78,7 @@ const EmployeeLogin = () => {
         </button>
       </form>
       <p>
-        don't have an account click{" "}
+        Don't have an account? Click{" "}
         <a href="http://localhost:3000/signup">HERE</a>
       </p>
     </div>

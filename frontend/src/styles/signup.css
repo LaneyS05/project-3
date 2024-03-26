@@ -47,4 +47,8 @@
   .signup-button:hover {
     background-color: rgb(74 222 128);
   }
+
+  .link:hover {
+    color: #Fec90f;
+  }
   

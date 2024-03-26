@@ -156,7 +156,9 @@ const EmployeeSignup = () => {
       </form>
       <p>
         already have an account click{" "}
-        <a href="http://localhost:3000/login">HERE</a>
+        <a className="link" href="http://localhost:3000/login">
+          HERE
+        </a>
       </p>
     </div>
   );
