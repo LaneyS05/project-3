@@ -16,6 +16,7 @@ import {
   Financial,
 } from "./pages";
 import EmployeeLogin from "./EmployeeLogin";
+import EmployeeSignup from "./SignUp";
 import { useStateContext } from "./contexts/ContextProvider";
 
 import "./App.css";
@@ -80,6 +81,7 @@ const App = () => {
             <Routes>
               {/* Route for EmployeeLogin */}
               <Route path="/" element={<EmployeeLogin />} />
+              <Route path="/signup" element={<EmployeeSignup />} />
 
               {/* dashboard  */}
               <Route path="/ecommerce" element={<Ecommerce />} />

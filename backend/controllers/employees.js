@@ -1,4 +1,3 @@
-// controllers/employees.js
 const router = require("express").Router();
 const db = require("../models");
 
@@ -17,7 +16,7 @@ router.get("/", async (req, res) => {
         "ReportsTo",
         "Photo",
         "email",
-        "password_hash", // Updated column name
+        "password_hash",
         "createdAt",
         "updatedAt",
       ],
@@ -40,7 +39,6 @@ router.post("/", async (req, res) => {
     Country,
     HireDate,
     ReportsTo,
-    Photo,
     email,
     password_hash, // Assuming frontend sends plain text password
   } = req.body;
@@ -52,9 +50,8 @@ router.post("/", async (req, res) => {
       Country,
       HireDate,
       ReportsTo,
-      Photo,
       email,
-      password_hash, // Store password_hash as plain text
+      password_hash,
     });
 
     res.status(201).json({
@@ -63,6 +60,7 @@ router.post("/", async (req, res) => {
       employee: newEmployee,
     });
   } catch (error) {
+    console.error("Error creating employee:", error);
     res.status(400).json({
       success: false,
       message: "Failed to create employee",

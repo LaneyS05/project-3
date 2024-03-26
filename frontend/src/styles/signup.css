@@ -1,5 +1,4 @@
-
-.login-container {
+.signup-container {
     font-family: "Open Sans", sans-serif;
     color: #374151;
     max-width: 400px;
@@ -10,29 +9,32 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  .login-form {
+  .signup-form {
     display: flex;
     flex-direction: column;
   }
   
-  .login-form-label {
-    margin-bottom: 8px;
+  .form-group {
+    margin-bottom: 16px;
   }
   
-  .login-form-input {
+  .form-group label {
+    font-weight: bold;
+  }
+  
+  .form-group input {
     padding: 10px;
-    margin-bottom: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
   }
   
-  .login-form-input:focus {
+  .form-group input:focus {
     outline: none;
     border-color: #007bff;
   }
   
-  .login-form-submit {
+  .signup-button {
     padding: 12px;
     border: none;
     border-radius: 4px;
@@ -42,15 +44,7 @@
     cursor: pointer;
   }
   
-  .login-form-submit:hover {
+  .signup-button:hover {
     background-color: rgb(74 222 128);
-  }
-
-  a{
-    color: #fb9678;
-  }
-
-  a:hover {
-    color: #Fec90f;
   }
   

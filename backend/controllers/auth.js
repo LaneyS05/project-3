@@ -1,44 +1,41 @@
-// controllers/auth.js
 const express = require("express");
 const router = express.Router();
 const db = require("../models");
 
 const { Employee } = db;
 
-router.post("/login", async (req, res) => {
-  const { email, password } = req.body;
+router.post("/", async (req, res) => {
+  const {
+    Employee: employeeName,
+    Designation,
+    Country,
+    HireDate,
+    ReportsTo,
+    email,
+    password_hash,
+  } = req.body;
 
   try {
-    console.log("Received login request for email:", email);
+    const newEmployee = await Employee.create({
+      Employee: employeeName,
+      Designation,
+      Country,
+      HireDate,
+      ReportsTo,
+      email,
+      password_hash,
+    });
 
-    const employee = await Employee.findOne({ where: { email } });
-
-    if (!employee) {
-      console.log("Employee not found");
-      return res.status(401).json({ message: "Invalid credentials" });
-    }
-
-    console.log("Found employee:", employee.EmployeeID);
-
-    const passwordMatch = await employee.comparePassword(password);
-
-    if (!passwordMatch) {
-      console.log("Password does not match");
-      return res.status(401).json({ message: "Invalid credentials" });
-    }
-
-    console.log("Login successful for employee:", employee.EmployeeID);
-
-    res.status(200).json({
+    res.status(201).json({
       success: true,
-      message: "Login successful",
-      employee,
+      message: "Employee created successfully",
+      employee: newEmployee,
     });
   } catch (error) {
-    console.error("An error occurred during login:", error.message);
-    res.status(500).json({
+    console.error("Error creating employee:", error);
+    res.status(400).json({
       success: false,
-      message: "An error occurred",
+      message: "Failed to create employee",
       error: error.message,
     });
   }

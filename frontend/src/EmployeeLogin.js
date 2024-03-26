@@ -21,22 +21,25 @@ const EmployeeLogin = () => {
         },
         body: JSON.stringify({
           email,
-          password,
+          password, // Make sure password is sent correctly
         }),
       });
 
-      //console.log("Response status:", response.status);
+      console.log("Response status:", response.status); // Check the response status
 
       const data = await response.json();
 
       if (response.ok) {
         if (data.success) {
+          // Handle successful login
           console.log("Login successful");
           setLoggedIn(true);
         } else {
+          // Handle invalid credentials
           console.log("Invalid credentials");
         }
       } else {
+        // Handle other HTTP errors
         console.log(`HTTP Error: ${response.status} - ${response.statusText}`);
       }
     } catch (error) {
@@ -85,6 +88,10 @@ const EmployeeLogin = () => {
           Login
         </button>
       </form>
+      <p>
+        don't have an account click{" "}
+        <a href="http://localhost:3000/signup">HERE</a>
+      </p>
     </div>
   );
 };
