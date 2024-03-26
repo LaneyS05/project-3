@@ -31,7 +31,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// POST a new employee (for example, for registration)
+// POST a new employee
 router.post("/", async (req, res) => {
   const {
     Employee,
@@ -40,7 +40,7 @@ router.post("/", async (req, res) => {
     HireDate,
     ReportsTo,
     email,
-    password_hash, // Assuming frontend sends plain text password
+    password_hash,
   } = req.body;
 
   try {

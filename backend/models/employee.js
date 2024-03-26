@@ -1,14 +1,10 @@
-// models/employee.js
 const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
   class Employee extends Model {
-    static associate(models) {
-      // define association here
-    }
+    static associate(models) {}
 
     async comparePassword(password) {
-      // For now, compare passwords directly without hashing
       return this.password_hash === password;
     }
   }

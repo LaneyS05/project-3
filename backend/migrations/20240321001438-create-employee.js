@@ -1,5 +1,4 @@
 "use strict";
-//migration
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("Employees", {

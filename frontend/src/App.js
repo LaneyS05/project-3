@@ -79,7 +79,7 @@ const App = () => {
             {themeSettings && <ThemeSettings />}
 
             <Routes>
-              {/* Route for EmployeeLogin */}
+              {/* Route for login/signup */}
               <Route path="/" element={<EmployeeLogin />} />
               <Route path="/signup" element={<EmployeeSignup />} />
 

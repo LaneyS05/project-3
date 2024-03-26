@@ -35,9 +35,9 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point, you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However, we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
 ## Learn More
 
@@ -87,15 +87,15 @@ pgAdmin (optional, for managing PostgreSQL databases)
 
 The following npm packages will be used in this project:
 
-cors: Middleware for enabling Cross-Origin Resource Sharing in Express.js.
-dotenv: Module for loading environment variables from a .env file.
-Sequelize for the data base
+- cors: Middleware for enabling Cross-Origin Resource Sharing in Express.js.
+- dotenv: Module for loading environment variables from a .env file.
+- Sequelize for the database
 
 ## Features
 
-Display orders, employees, and customers data in a tabular format using Syncfusion GridComponent.
-Allow sorting, filtering, searching, editing, and deleting data entries.
-Custom image templates for displaying images in the grid.
+- Display orders, employees, and customers data in a tabular format using Syncfusion GridComponent.
+- Allow sorting, filtering, searching, editing, and deleting data entries.
+- Custom image templates for displaying images in the grid.
 
 # Backend (Node.js Express)
 
@@ -103,12 +103,12 @@ Custom image templates for displaying images in the grid.
 
 ### Orders API (/orders):
 
-GET /orders: Fetch all orders data.
+- GET /orders: Fetch all orders data.
 
-### Employees API (/employees):
+### Employees API (/auth/employees):
 
-GET /employees: Fetch all employees data.
+- POST /auth/employees: Create a new employee.
 
 ### Customers API (/customers):
 
-GET /customers: Fetch all customers data.
+- GET /customers: Fetch all customers data.

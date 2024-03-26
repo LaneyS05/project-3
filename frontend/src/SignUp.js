@@ -6,6 +6,7 @@ const EmployeeSignup = () => {
   const [signedIn, setSignedIn] = useState(false);
   const [employee, setEmployee] = useState({
     Employee: "",
+    EmployeeID: "",
     Designation: "",
     Country: "",
     HireDate: "",
@@ -37,7 +38,6 @@ const EmployeeSignup = () => {
       if (response.ok) {
         console.log("Employee created successfully!");
         setSignedIn(true);
-        // Optionally, redirect or show a success message
       } else {
         console.error("Failed to create employee");
       }
@@ -61,6 +61,18 @@ const EmployeeSignup = () => {
             id="Employee"
             name="Employee"
             value={employee.Employee}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="EmployeeID">EmployeeID:</label>
+          <input
+            type="text"
+            id="EmployeeID"
+            name="EmployeeID"
+            value={employee.EmployeeID}
             onChange={handleChange}
             required
           />

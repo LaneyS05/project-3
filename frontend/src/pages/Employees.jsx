@@ -76,7 +76,6 @@ const Employees = () => {
             headerText="Reports To"
             width="150"
           />
-          {/* Add more columns as needed */}
         </ColumnsDirective>
         <Inject services={[Page, Search, Toolbar]} />
       </GridComponent>

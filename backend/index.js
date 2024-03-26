@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 // Import Sequelize and Models
 const db = require("./models");
-db.sequelize.sync(); // Sync models with database
+db.sequelize.sync();
 
 // Controllers
 const employeesRouter = require("./controllers/employees");
@@ -28,7 +28,7 @@ app.use("/orders", orderRouter);
 app.use("/customers", customerRouter);
 app.use("/auth/employees", signupAuthRouter);
 
-// Listen for Connections
+// Listen
 const PORT = process.env.PORT || 8001;
 app.listen(PORT, () => {
   console.log(`Listening on ${PORT}`);

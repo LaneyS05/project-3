@@ -35,7 +35,6 @@ const Customers = () => {
     }
   };
 
-  // Custom template for rendering the image
   const imageTemplate = (field) => {
     return (
       <img src={field.Photo} alt="" style={{ width: "20px", height: "20px" }} />
