@@ -96,17 +96,17 @@ const Navbar = () => {
             onClick={() => handleClick("userProfile")}
           >
             {/* dummy avatar icon  */}
-            <img
+            {/* <img
               // circle avatar picture
               className="rounded-full w-8 h-8"
               src={avatar}
               alt="user-profile"
-            />
+            /> */}
             <p>
-              <span className="text-gray-400 text-14">Hi,</span>{" "}
+              {/* <span className="text-gray-400 text-14">Hi,</span>{" "}
               <span className="text-gray-400 font-bold ml-1 text-14">
                 Michael
-              </span>
+              </span> */}
             </p>
             <MdKeyboardArrowDown className="text-gray-400 text-14" />
           </div>
