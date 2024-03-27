@@ -12,7 +12,7 @@ const EmployeeSignup = () => {
     HireDate: "",
     ReportsTo: "",
     email: "",
-    password_hash: "", // Change to password_hash
+    password_hash: "",
   });
 
   const handleChange = (e) => {

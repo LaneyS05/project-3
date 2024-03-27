@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { Navbar, Footer, Sidebar, ThemeSettings } from "./components";
@@ -26,11 +26,12 @@ const App = () => {
     setCurrentColor,
     setCurrentMode,
     currentMode,
-    activeMenu,
     currentColor,
     themeSettings,
     setThemeSettings,
   } = useStateContext();
+
+  const location = useLocation();
 
   useEffect(() => {
     const currentThemeColor = localStorage.getItem("colorMode");
@@ -40,6 +41,13 @@ const App = () => {
       setCurrentMode(currentThemeMode);
     }
   }, [setCurrentColor, setCurrentMode]);
+
+  const isLoginPage = location.pathname === "/login";
+  const isSignupPage = location.pathname === "/signup";
+  const showNavbar = !(isLoginPage || isSignupPage);
+
+  // Setting activeMenu based on showNavbar
+  const activeMenu = showNavbar ? true : false;
 
   return (
     <div className={currentMode === "Dark" ? "dark" : ""}>
@@ -60,11 +68,8 @@ const App = () => {
           <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
             <Sidebar />
           </div>
-        ) : (
-          <div className="w-0 dark:bg-secondary-dark-bg">
-            <Sidebar />
-          </div>
-        )}
+        ) : null}
+
         <div
           className={
             activeMenu
@@ -72,15 +77,18 @@ const App = () => {
               : "bg-main-bg dark:bg-main-dark-bg  w-full min-h-screen flex-2 "
           }
         >
-          <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full ">
-            <Navbar />
-          </div>
+          {showNavbar && (
+            <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full ">
+              <Navbar className="navbar" />
+            </div>
+          )}
           <div>
             {themeSettings && <ThemeSettings />}
 
             <Routes>
               {/* Route for login/signup */}
               <Route path="/" element={<EmployeeLogin />} />
+              <Route path="/login" element={<EmployeeLogin />} />
               <Route path="/signup" element={<EmployeeSignup />} />
 
               {/* dashboard  */}
@@ -100,7 +108,7 @@ const App = () => {
               <Route path="/financial" element={<Financial />} />
             </Routes>
           </div>
-          <Footer />
+          <Footer className="footer" />
         </div>
       </div>
     </div>
