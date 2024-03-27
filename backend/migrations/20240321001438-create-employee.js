@@ -1,46 +1,54 @@
-'use strict';
-/** @type {import('sequelize-cli').Migration} */
+"use strict";
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Employees', {
-      id: {
+    await queryInterface.createTable("Employees", {
+      EmployeeID: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      EmployeeID: {
-        type: Sequelize.INTEGER
       },
       Employee: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       Designation: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       Country: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       HireDate: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       ReportsTo: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       Photo: {
-        type: Sequelize.BLOB
+        type: Sequelize.BLOB,
+      },
+      email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+          isEmail: true,
+        },
+      },
+      password_hash: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        allowNull: true,
+        type: Sequelize.DATE,
       },
       updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
+        allowNull: true,
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Employees');
-  }
+    await queryInterface.dropTable("Employees");
+  },
 };

@@ -1,4 +1,3 @@
-// Modules and Globals
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -11,13 +10,26 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Controllers & Routes
+// Import Sequelize and Models
+const db = require("./models");
+db.sequelize.sync();
 
-app.use(express.urlencoded({ extended: true }));
+// Controllers
+const employeesRouter = require("./controllers/employees");
+const authRouter = require("./controllers/auth");
+const orderRouter = require("./controllers/orders");
+const customerRouter = require("./controllers/customer");
+const signupAuthRouter = require("./controllers/create");
 
-// Controllers will go here
+// Routes
+app.use("/employees", employeesRouter);
+app.use("/auth", authRouter);
+app.use("/orders", orderRouter);
+app.use("/customers", customerRouter);
+app.use("/auth/employees", signupAuthRouter);
 
-// Listen for Connections
-app.listen(process.env.PORT, () => {
-  console.log(`Listening on ${process.env.PORT}`);
+// Listen
+const PORT = process.env.PORT || 8001;
+app.listen(PORT, () => {
+  console.log(`Listening on ${PORT}`);
 });
