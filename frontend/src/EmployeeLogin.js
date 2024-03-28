@@ -6,6 +6,7 @@ const EmployeeLogin = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,12 +35,23 @@ const EmployeeLogin = () => {
           setLoggedIn(true);
         } else {
           console.log("Invalid credentials");
+          setErrorMessage("Incorrect email or password.");
         }
       } else {
-        console.log(`HTTP Error: ${response.status} - ${response.statusText}`);
+        if (response.status === 400) {
+          console.log("Bad request error (client error)");
+          setErrorMessage("Incorrect email or password.");
+        } else if (response.status >= 500) {
+          console.log("Server error");
+          setErrorMessage("Server error. Please try again later.");
+        } else {
+          console.log("Unknown error");
+          setErrorMessage("An unknown error occurred. Please try again later.");
+        }
       }
     } catch (error) {
       console.error("An error occurred:", error.message);
+      setErrorMessage("An error occurred. Please try again later."); // Display generic error
     }
   };
 
@@ -50,6 +62,7 @@ const EmployeeLogin = () => {
   return (
     <div className="login-container">
       <h2>Login</h2>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
       <form className="login-form" onSubmit={handleSubmit}>
         <label className="login-form-label" htmlFor="email">
           Email:
@@ -63,6 +76,9 @@ const EmployeeLogin = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+        <label className="login-form-label" htmlFor="password">
+          Password:
+        </label>
         <input
           className="login-form-input"
           type="password"
