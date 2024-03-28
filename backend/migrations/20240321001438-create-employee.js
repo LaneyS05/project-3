@@ -6,7 +6,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
       },
       Employee: {
         type: Sequelize.STRING,

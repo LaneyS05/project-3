@@ -43,8 +43,9 @@ const Employees = () => {
         dataSource={employeesData}
         allowPaging
         allowSorting
-        toolbar={["Search"]}
-        width="auto"
+        toolbar={["Search", "Delete"]} // Merged toolbar props into a single prop
+        editSettings={{ allowDeleting: true, allowEditing: true }}
+        width="auto" // Removed the duplicate width prop
       >
         <ColumnsDirective>
           <ColumnDirective

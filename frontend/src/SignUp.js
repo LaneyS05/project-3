@@ -6,7 +6,7 @@ const EmployeeSignup = () => {
   const [signedIn, setSignedIn] = useState(false);
   const [employee, setEmployee] = useState({
     Employee: "",
-    EmployeeID: "",
+    EmployeeID: 0,
     Designation: "",
     Country: "",
     HireDate: "",
@@ -19,7 +19,7 @@ const EmployeeSignup = () => {
     const { name, value } = e.target;
     setEmployee((prevEmployee) => ({
       ...prevEmployee,
-      [name]: value,
+      [name]: name === "EmployeeID" ? parseInt(value) : value,
     }));
   };
 
@@ -74,7 +74,7 @@ const EmployeeSignup = () => {
         <div className="form-group">
           <label htmlFor="EmployeeID">EmployeeID:</label>
           <input
-            type="text"
+            type="number"
             id="EmployeeID"
             name="EmployeeID"
             value={employee.EmployeeID}

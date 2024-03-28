@@ -35,6 +35,7 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   const {
     Employee,
+    EmployeeID,
     Designation,
     Country,
     HireDate,
@@ -46,6 +47,7 @@ router.post("/", async (req, res) => {
   try {
     const newEmployee = await Employee.create({
       Employee,
+      EmployeeID,
       Designation,
       Country,
       HireDate,
