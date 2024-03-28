@@ -71,4 +71,32 @@ router.post("/", async (req, res) => {
   }
 });
 
+// DELETE an employee
+router.delete("/", async (req, res) => {
+  const { EmployeeID } = req.body;
+  console.log("Deleting employee with ID:", EmployeeID);
+
+  try {
+    if (!EmployeeID) {
+      throw new Error("EmployeeID is required for deletion");
+    }
+
+    await Employee.destroy({
+      where: {
+        EmployeeID: EmployeeID,
+      },
+    });
+
+    console.log("Employee deleted successfully");
+    res.status(204).send(); // No content - successful deletion
+  } catch (error) {
+    console.error("Error deleting employee:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to delete employee",
+      error: error.message,
+    });
+  }
+});
+
 module.exports = router;
