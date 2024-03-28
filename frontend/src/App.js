@@ -42,11 +42,14 @@ const App = () => {
     }
   }, [setCurrentColor, setCurrentMode]);
 
+  // Will not show the navbar or side bar if "/login", "/signup" and "/"
   const isLoginPage = location.pathname === "/login";
   const isSignupPage = location.pathname === "/signup";
-  const showNavbar = !(isLoginPage || isSignupPage);
 
-  // Setting activeMenu based on showNavbar
+  const isHomePage = location.pathname === "/";
+
+  const showNavbar = !(isLoginPage || isSignupPage || isHomePage);
+
   const activeMenu = showNavbar ? true : false;
 
   return (
