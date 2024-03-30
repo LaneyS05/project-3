@@ -108,6 +108,7 @@ The following npm packages will be used in this project:
 ### Employees API (/auth/employees):
 
 - POST /auth/employees: Create a new employee.
+- GET /employees: Fetch all employees.
 
 ### Customers API (/customers):
 

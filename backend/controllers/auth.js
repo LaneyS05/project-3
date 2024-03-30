@@ -1,5 +1,3 @@
-// controllers/auth.js
-
 const express = require("express");
 const router = express.Router();
 const db = require("../models");
@@ -23,8 +21,6 @@ router.post("/login", async (req, res) => {
         .json({ success: false, message: "Invalid credentials" });
     }
 
-    // For demonstration, we are comparing plain text passwords here
-    // In a production environment, always use hashed passwords for comparison
     console.log("Comparing passwords...");
     console.log("Employee Password Hash:", employee.password_hash);
     console.log("Entered Password:", password);

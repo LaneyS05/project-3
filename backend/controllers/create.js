@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../models");
 
-const { Employee: EmployeeModel } = db; // Rename the variable to avoid conflict
+const { Employee: EmployeeModel } = db;
 
 router.post("/", async (req, res) => {
   const {
@@ -18,14 +18,13 @@ router.post("/", async (req, res) => {
   try {
     console.log("Received Employee Data:", req.body);
     const newEmployee = await EmployeeModel.create({
-      // Use the renamed variable here
       Employee,
       Designation,
       Country,
       HireDate,
       ReportsTo,
       email,
-      password_hash, // Use password_hash instead of password
+      password_hash,
     });
 
     console.log("New Employee Created:", newEmployee);

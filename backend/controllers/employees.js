@@ -35,6 +35,7 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   const {
     Employee,
+    EmployeeID,
     Designation,
     Country,
     HireDate,
@@ -46,6 +47,7 @@ router.post("/", async (req, res) => {
   try {
     const newEmployee = await Employee.create({
       Employee,
+      EmployeeID,
       Designation,
       Country,
       HireDate,
@@ -64,6 +66,34 @@ router.post("/", async (req, res) => {
     res.status(400).json({
       success: false,
       message: "Failed to create employee",
+      error: error.message,
+    });
+  }
+});
+
+// DELETE an employee
+router.delete("/", async (req, res) => {
+  const { EmployeeID } = req.body;
+  console.log("Deleting employee with ID:", EmployeeID);
+
+  try {
+    if (!EmployeeID) {
+      throw new Error("EmployeeID is required for deletion");
+    }
+
+    await Employee.destroy({
+      where: {
+        EmployeeID: EmployeeID,
+      },
+    });
+
+    console.log("Employee deleted successfully");
+    res.status(204).send(); // No content - successful deletion
+  } catch (error) {
+    console.error("Error deleting employee:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to delete employee",
       error: error.message,
     });
   }

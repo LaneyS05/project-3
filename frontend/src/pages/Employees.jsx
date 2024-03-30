@@ -12,6 +12,7 @@ import { Header } from "../components";
 
 const Employees = () => {
   const [employeesData, setEmployeesData] = useState([]);
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
 
   useEffect(() => {
     const fetchEmployees = async () => {
@@ -36,6 +37,33 @@ const Employees = () => {
     );
   };
 
+  const handleDelete = async () => {
+    if (!selectedEmployee) return;
+
+    try {
+      const response = await fetch("http://localhost:8001/employees", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ EmployeeID: selectedEmployee.EmployeeID }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete employee");
+      }
+
+      // Remove deleted employee from the local state
+      setEmployeesData((prevData) =>
+        prevData.filter((emp) => emp.EmployeeID !== selectedEmployee.EmployeeID)
+      );
+
+      setSelectedEmployee(null);
+    } catch (error) {
+      console.error("Error deleting employee:", error);
+    }
+  };
+
   return (
     <div className="m-2 md:m-10 p-2 md:p-10 bg-white rounded-3xl">
       <Header category="Page" title="Employees" />
@@ -43,8 +71,20 @@ const Employees = () => {
         dataSource={employeesData}
         allowPaging
         allowSorting
-        toolbar={["Search"]}
+        toolbar={[
+          "Search",
+          {
+            text: "Delete",
+            tooltipText: "Delete Employee",
+            prefixIcon: "e-delete",
+            id: "deleteEmployee",
+            align: "Right",
+            click: handleDelete,
+          },
+        ]}
+        editSettings={{ allowDeleting: true, allowEditing: true }}
         width="auto"
+        rowSelected={(args) => setSelectedEmployee(args.data)}
       >
         <ColumnsDirective>
           <ColumnDirective
@@ -53,7 +93,6 @@ const Employees = () => {
             width={120}
             template={imageTemplate}
           />
-
           <ColumnDirective
             field="EmployeeID"
             headerText="Employee ID"

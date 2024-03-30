@@ -13,8 +13,6 @@ import {
 } from "@syncfusion/ej2-react-grids";
 import { Header } from "../components";
 
-// Other imports...
-
 const Customers = () => {
   const [customers, setCustomers] = useState([]);
 
@@ -48,8 +46,8 @@ const Customers = () => {
         dataSource={customers}
         allowPaging
         allowSorting
-        toolbar={["Delete"]}
-        editSettings={{ allowDeleting: true, allowEditing: true }}
+        toolbar={["Search"]}
+        editSettings={{ allowEditing: true }}
         width="auto"
       >
         <ColumnsDirective>
