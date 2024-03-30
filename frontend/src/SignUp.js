@@ -52,7 +52,7 @@ const EmployeeSignup = () => {
   };
 
   if (signedIn) {
-    return <Navigate to="/ecommerce" />;
+    return <Navigate to="/login" />;
   }
 
   return (

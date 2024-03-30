@@ -13,6 +13,7 @@ import { Header } from "../components";
 const Employees = () => {
   const [employeesData, setEmployeesData] = useState([]);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [isDirty, setIsDirty] = useState(false);
 
   useEffect(() => {
     const fetchEmployees = async () => {
@@ -33,7 +34,11 @@ const Employees = () => {
 
   const imageTemplate = (field) => {
     return (
-      <img src={field.Photo} alt="" style={{ width: "20px", height: "20px" }} />
+      <img
+        src={`${field.photo}`}
+        alt=""
+        style={{ width: "20px", height: "20px" }}
+      />
     );
   };
 
@@ -53,7 +58,6 @@ const Employees = () => {
         throw new Error("Failed to delete employee");
       }
 
-      // Remove deleted employee from the local state
       setEmployeesData((prevData) =>
         prevData.filter((emp) => emp.EmployeeID !== selectedEmployee.EmployeeID)
       );
@@ -62,6 +66,57 @@ const Employees = () => {
     } catch (error) {
       console.error("Error deleting employee:", error);
     }
+  };
+
+  const handleSave = async () => {
+    if (!isDirty || !selectedEmployee) return;
+
+    try {
+      const { EmployeeID, field, value } = selectedEmployee;
+
+      if (!field || value === undefined) {
+        throw new Error("Field and value are required for update");
+      }
+
+      const updatedEmployee = {
+        EmployeeID,
+        [field]: value,
+      };
+
+      console.log("Updated Employee:", updatedEmployee);
+
+      const response = await fetch("http://localhost:8001/employees", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedEmployee),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update employee");
+      }
+
+      setIsDirty(false);
+    } catch (error) {
+      console.error("Error updating employee:", error);
+    }
+  };
+
+  const handleActionComplete = (args) => {
+    if (args.requestType === "save") {
+      setIsDirty(true);
+    }
+  };
+
+  const handleRowSelected = (args) => {
+    const field = args.data.field;
+    const value = args.data.value;
+    setSelectedEmployee({
+      EmployeeID: args.data.EmployeeID,
+      field,
+      value,
+    });
   };
 
   return (
@@ -84,7 +139,8 @@ const Employees = () => {
         ]}
         editSettings={{ allowDeleting: true, allowEditing: true }}
         width="auto"
-        rowSelected={(args) => setSelectedEmployee(args.data)}
+        rowSelected={handleRowSelected}
+        actionComplete={handleActionComplete}
       >
         <ColumnsDirective>
           <ColumnDirective
@@ -118,6 +174,18 @@ const Employees = () => {
         </ColumnsDirective>
         <Inject services={[Page, Search, Toolbar]} />
       </GridComponent>
+
+      <button
+        className={`bg-${
+          isDirty ? "cyan" : "gray"
+        }-300 text-gray-600 py-2 px-4 rounded ${
+          isDirty ? "cursor-pointer hover:bg-cyan-400" : "cursor-not-allowed"
+        }`}
+        onClick={handleSave}
+        disabled={!isDirty}
+      >
+        Save
+      </button>
     </div>
   );
 };

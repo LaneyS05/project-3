@@ -88,12 +88,59 @@ router.delete("/", async (req, res) => {
     });
 
     console.log("Employee deleted successfully");
-    res.status(204).send(); // No content - successful deletion
+    res.status(204).send();
   } catch (error) {
     console.error("Error deleting employee:", error);
     res.status(500).json({
       success: false,
       message: "Failed to delete employee",
+      error: error.message,
+    });
+  }
+});
+
+// PUT/UPDATE an employee
+router.put("/", async (req, res) => {
+  const { EmployeeID, field, value } = req.body;
+
+  console.log("Updating employee with ID:", EmployeeID);
+
+  if (!EmployeeID || !field || value === undefined) {
+    return res.status(400).json({
+      success: false,
+      message: "Invalid request data for update",
+    });
+  }
+
+  try {
+    let updatedEmployee = await Employee.findOne({
+      where: {
+        EmployeeID: EmployeeID,
+      },
+    });
+
+    if (!updatedEmployee) {
+      return res.status(404).json({
+        success: false,
+        message: `Employee with ID ${EmployeeID} not found`,
+      });
+    }
+
+    updatedEmployee[field] = value;
+
+    updatedEmployee = await updatedEmployee.save();
+
+    console.log("Employee updated successfully");
+    return res.status(200).json({
+      success: true,
+      message: "Employee updated successfully",
+      updatedEmployee: updatedEmployee,
+    });
+  } catch (error) {
+    console.error("Error updating employee:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to update employee",
       error: error.message,
     });
   }
