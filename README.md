@@ -79,6 +79,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 MIT License
 
+## videos
+
+https://www.youtube.com/watch?v=jx5hdo50a2M
+
 # Laney's code
 
 This is some Of what Laney Staggs worked on
@@ -92,6 +96,7 @@ This guide provides steps to set up a Node.js project with necessary dependencie
 Node.js and npm (Node Package Manager)
 PostgreSQL
 pgAdmin (optional, for managing PostgreSQL databases)
+npx sequelize-cli db:seed:all
 
 ## Dependencies
 
