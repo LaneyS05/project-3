@@ -1,22 +1,29 @@
 "use strict";
 const express = require("express");
+const session = require('express-session');
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
-const { sequelize } = require("../backend/models"); // Import Sequelize instance
+const { sequelize } = require("../backend/models");
 
 // Express Settings
 app.use(cors());
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(session({
+  secret: 'secret-key', 
+  resave: false,
+  saveUninitialized: true
+}));
 
 // Import Sequelize models
 const db = require("./models");
 
 // Route to fetch user data
 const User = require('./controllers/User');
-app.get('/api/user', User.getCurrentUser);
+app.get("/api/User", User.getCurrentUser);
+app.get("/api/User/logout", User.logoutUser);
 
 // Import Sequelize models
 const { Employee, Customer, Order } = db;

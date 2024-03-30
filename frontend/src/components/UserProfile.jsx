@@ -1,31 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useStateContext } from '../contexts/ContextProvider';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const UserProfile = () => {
-  const [currentUser, setCurrentUser] = useState(null);
-
-  const fetchCurrentUser = async () => {
-    try {
-      const response = await axios.get('/api/user');
-      setCurrentUser(response.data.name);
-    } catch (error) {
-      console.error('Error fetching current user:', error);
-    }
-  };
+  const { currentUser } = useStateContext();
+  const navigate = useNavigate(); // Corrected variable name
 
   const handleLogout = async () => {
     try {
-      await axios.get('/api/user/logout');
+      await axios.get('http://localhost:8001/api/User/logout');
       // Redirect to login page after logout
-      window.location.href = '/Employeelogin'; // Redirect to your login page
+      navigate('/'); 
+      console.log('Logout successful');
     } catch (error) {
       console.error('Error logging out:', error);
     }
   };
-
-  useEffect(() => {
-    fetchCurrentUser();
-  }, []);
 
   return (
     <div>

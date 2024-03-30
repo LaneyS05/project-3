@@ -3,8 +3,9 @@ const { Employee } = require('../models')
 const User = {
   getCurrentUser: async (req, res) => {
     try {
-      const currentUser = req.user;
-      const user = await Employee.findOne({ where: { id: currentUser.id } });
+      console.log(req.body)
+      const CurrentUser = req.user;
+      const user = await Employee.findOne({ where: { id: CurrentUser.id } });
       
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
