@@ -69,6 +69,16 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
+## Contributors
+
+- warlie3d ([GitHub Profile] (https://github.com/warlie3d)),
+- LaneyS05 ([GitHub Profile] (https://github.com/LaneyS05)),
+- C4ntinflas ([GitHub Profile] (https://github.com/C4ntinflas)),
+
+## License
+
+MIT License
+
 # Laney's code
 
 This is some Of what Laney Staggs worked on
@@ -113,4 +123,3 @@ The following npm packages will be used in this project:
 ### Customers API (/customers):
 
 - GET /customers: Fetch all customers data.
-  :
