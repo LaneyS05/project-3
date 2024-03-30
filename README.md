@@ -1,3 +1,11 @@
+React Admin Dashboard App with Theming, Tables, Charts, Calendar, Kanban, and More
+This project is a comprehensive React admin dashboard application featuring a variety
+of components including theming options, tables, charts, calendar functionality, kanban boards, and more.
+Additionally, we have integrated a PostgreSQL backend to efficiently manage and retrieve data for enhanced functionality.
+
+Feel free to adjust the wording or add more details as needed!
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -79,7 +87,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 MIT License
 
-## videos
+## videos inspired from
 
 https://www.youtube.com/watch?v=jx5hdo50a2M
 
